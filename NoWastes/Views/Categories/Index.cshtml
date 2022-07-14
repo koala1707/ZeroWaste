@@ -1,0 +1,31 @@
+﻿@model IEnumerable<NoWasteFoods.Models.Categories>
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Category</h2>
+@if (!Model.Any())
+{
+    <p>No Categories</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>
+                        @c.CategoryName
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

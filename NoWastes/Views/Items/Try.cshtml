@@ -1,0 +1,36 @@
+﻿@model NoWasteFoods.ViewModels.FoodStorageViewModel
+@{
+    ViewBag.Title = "Try";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* A latest date *@
+@{
+    var currentDate = DateTime.Today.ToString("dd/MM/yyyy");
+}
+
+
+<p class="">@Model.Category.CategoryName</p>
+
+@foreach (var food in Model.ItemList)
+{
+    // conver string date into date to compaire it with the currentDate
+    var warningExpired = Convert.ToDateTime(food.Expired);
+    if (food.Expired == currentDate)
+    {
+        <li>@food.ItemName</li>
+        <text>Expired Date. Throw it away!</text>
+    }
+    else if (warningExpired.AddDays(-3).ToString("dd/MM/yyyy") == currentDate)
+    {
+        <li>@food.ItemName</li>
+        <text>Expiterd 3 days ago</text>
+    }
+    else
+    {
+        <li>@food.ItemName</li>
+        <text>@food.Expired</text>
+    }
+}
+
+

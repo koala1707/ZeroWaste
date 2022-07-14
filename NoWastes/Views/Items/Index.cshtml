@@ -1,0 +1,32 @@
+﻿@model IEnumerable<NoWasteFoods.Models.Items>
+@{
+    ViewBag.Title = "Items";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Items</h2>
+@if (!Model.Any())
+{
+    <p>No Items</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Item</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(i.ItemName, "Details", "Items", new { id = i.Id }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
